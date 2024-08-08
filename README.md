@@ -89,7 +89,7 @@ python test.py --checkpoint /path/to/model/checkpoint  --model CTRLF_B_AKF --bat
 if you have any question, please email `hosamsherif2000@gmail.com` or `hossamsherif@cis.asu.edu.eg`
 
 ## License
-This project is released under the MIT license. Please see the [LICENSE](LICENSE.md) file for more information.
+This project is released under the MIT license. Please see the [LICENSE](LICENSE) file for more information.
 
 ## Citation
 Please consider citing our paper if you find it useful in your research
