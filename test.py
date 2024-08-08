@@ -68,23 +68,23 @@ def evaluate_ckf(model, dataloader,device):
 def build_dataset(is_train,args):
     data_transforms = get_transform(is_train,args)
     image_datasets = datasets.ImageFolder(args.data_path, data_transforms)
-    dataloaders = torch.utils.data.DataLoader(image_datasets, batch_size = args.batch_size,shuffle=True,num_workers=0)
+    dataloaders = torch.utils.data.DataLoader(image_datasets, batch_size = args.batch_size,shuffle=False,num_workers=0)
     data_size=len(image_datasets)
-    classes_names=image_datasets.classes
-    n_classes=len(classes_names)
-    return dataloaders, n_classes, data_size
+    return dataloaders, data_size
 
 
 def get_args_parser():
     parser = argparse.ArgumentParser('CTRL-F evaluation script', add_help=False)
     
     parser.add_argument('--batch-size', default=32, type=int)
-    parser.add_argument('--model', default='CTRLF_S_AKF', type=str, metavar='MODEL',
+    parser.add_argument('--model', default='CTRLF_B_AKF', type=str, metavar='MODEL',
                     help='Name of model to train')
     parser.add_argument('--checkpoint', type=str, required=True, help='Path to the model checkpoint')
     parser.add_argument('--data-path', default='flowers/', type=str,
                         help='dataset path')
     parser.add_argument('--input-size', nargs=2, type=int, default=[224, 224], help='images input size')
+    parser.add_argument('--n_classes', type=int, default=102, help='number of classes within the dataset')
+
     parser.add_argument('--scaling-factor', type=float, default=100,metavar='ALPHA',
                         help='scaling factor to be multiplied by the normalized output vectors produced from CNN and MFCA when using AKF fusion')
 
@@ -96,7 +96,7 @@ def main(args):
 
     is_akf = 'AKF' in args.model
 
-    test_dataloader, args.n_classes , _ = build_dataset(False, args)
+    test_dataloader , _ = build_dataset(False, args)
 
     if is_akf:
       model = create_model( 
@@ -111,17 +111,15 @@ def main(args):
     model.to(device)
 
     if device == "cuda":
-        checkpoint = torch.load('best_model.pth')
+        checkpoint = torch.load(args.checkpoint)
     else:
-        checkpoint = torch.load('best_model.pth', map_location='cpu')
+        checkpoint = torch.load(args.checkpoint, map_location='cpu')
 
     model_state_dict = checkpoint['model_state_dict']
     model.load_state_dict(model_state_dict)
 
     n_parameters = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print('number of params:', n_parameters)
-
-    criterion = torch.nn.CrossEntropyLoss()
 
 
     if is_akf:

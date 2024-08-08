@@ -27,7 +27,7 @@ def get_args_parser():
     parser.add_argument('--epochs', default=200, type=int)
 
     # model parameters
-    parser.add_argument('--model', default='CTRLF_B_CKF', type=str, metavar='MODEL',
+    parser.add_argument('--model', default='CTRLF_B_AKF', type=str, metavar='MODEL',
                         help='Name of model to train')
     parser.add_argument('--input-size', nargs=2, type=int, default=[224, 224], help='images input size')
 
@@ -186,7 +186,7 @@ def main(args):
                   'alpha': best_alpha,
                    } , args.output_dir + 'best_model.pth')
             else:
-                torch.save(model.state_dict(),args.output_dir + 'best_model.pth')
+                torch.save({'model_state_dict': model.state_dict()},args.output_dir + 'best_model.pth')
 
     print("best testing accuracy: ",max_accuracy.item())
     total_time = time.time() - start_time
