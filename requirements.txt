@@ -1,0 +1,5 @@
+numpy==1.26.4
+timm==1.0.8
+einops==0.8.0
+ptflops
+
