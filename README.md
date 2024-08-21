@@ -71,7 +71,7 @@ Download your training and testing data and structure the data as follows
 
 ## Training
 
-To train CTRL-F models on your dataset 
+To train CTRL-F models on your dataset, use the below command and specify one of the CTRL-F models
 
 ```shell script
 python main.py --model CTRLF_B_AKF --batch-size 16 --epochs 200 --data-path /path/to/dataset
