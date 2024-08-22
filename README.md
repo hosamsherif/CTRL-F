@@ -1,5 +1,5 @@
 # CTRL-F
-### **CTRL-F: Pairing Convolution with Transformer for Image Classification via Multi-Level Feature Cross-Attention and Representation Learning Fusion.**
+### **CTRL-F: Pairing Convolution with Transformer for Image Classification via Multi-Level Feature Cross-Attention and Representation Learning Fusion**
 This is the official pytorch implementation of the [CTRL-F paper](https://www.arxiv.org/abs/2407.06673).
 
 <hr />
