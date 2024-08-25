@@ -18,7 +18,7 @@ MFCA module using novel representation fusion techniques dubbed adaptive knowled
 (AKF) and collaborative knowledge fusion (CKF). Experiments demonstrate that our CTRLF variants achieve state-of-the-art performance, whether trained from scratch on large data
 or even with low-data regime. For Instance, CTRL-F achieves top-1 accuracy of 82.24% and
 99.91% when trained from scratch on Oxford-102 Flowers and PlantVillage datasets respectively, surpassing state-of-the-art models which showcase the robustness of our model on image
-classification tasks. Code at: https://github.com/hosamsherif/CTRL-F.*
+classification tasks.*
 <hr />
 
 ## Architecture Overview
